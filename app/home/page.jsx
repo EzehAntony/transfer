@@ -7,6 +7,9 @@ import "swiper/css";
 import HistoryCard from "../components/HistoryCard/HistoryCard";
 import { gsap, Power1 } from "gsap";
 import HistoryCardLoading from "../components/HistoryCardLoading/HistoryCardLoading";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Snowfall from "react-snowfall";
 
 export default function Home() {
   const t1 = gsap.timeline({});
@@ -18,6 +21,15 @@ export default function Home() {
   const [history, setHistory] = useState("");
   const [users, setUsers] = useState("");
   const [data, setData] = useState("");
+
+  const alertMsg = (message) => {
+    toast(message, {
+      position: "top-right",
+      autoClose: 2000,
+      draggable: false,
+      theme: "dark",
+    });
+  };
 
   // Gsap animations
   useLayoutEffect(() => {
@@ -85,7 +97,9 @@ export default function Home() {
       .catch((err) => console.log(err));
   };
   const getData = async () => {
-    await fetch("/api/user/nazville", { next: { revalidate: 10 } })
+    await fetch("/api/user/646556ac2823e900bed4b2dc", {
+      next: { revalidate: 10 },
+    })
       .then((res) => {
         return res.json();
       })
@@ -122,6 +136,7 @@ export default function Home() {
   return (
     <div className={styles.home} id="home" ref={ref}>
       <div id="hero" className={styles.hero}>
+        <Snowfall snowflakeCount={100} color="#ffffff60" speed={[1.0, 1.1]} />
         <header>
           <i class="bi bi-justify-left" id="menu"></i>
           <div className={styles.name} id="name">
@@ -155,7 +170,14 @@ export default function Home() {
           </h1>
 
           <div className={styles.button}>
-            <div id="request">
+            <div
+              onClick={() =>
+                alertMsg(
+                  "this feature is unavailable at the moment. You can only send out funds"
+                )
+              }
+              id="request"
+            >
               <h3>request</h3>
             </div>
             <div id="send">
@@ -211,7 +233,9 @@ export default function Home() {
 
         <div className={styles.group} id="group">
           {history &&
-            history.map((hist) => <HistoryCard key={hist._id} data={hist} />)}
+            history
+              .reverse()
+              .map((hist) => <HistoryCard key={hist._id} data={hist} />)}
           {!history && (
             <>
               <HistoryCardLoading /> <HistoryCardLoading />
@@ -220,6 +244,7 @@ export default function Home() {
           )}
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

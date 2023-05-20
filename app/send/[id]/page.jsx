@@ -5,10 +5,21 @@ import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { useRef, useLayoutEffect } from "react";
+import axios from "axios";
 
-export default function send() {
+export default function send({ params }) {
   const router = useRouter();
   const [screen, setScreen] = useState([]);
+  const [data, setData] = useState("");
+
+  useEffect(() => {
+    axios({
+      url: `http://localhost:3000/api/user/${params.id}`,
+      method: "GET",
+    })
+      .then((res) => setData(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   const t1 = gsap.timeline({});
   const ref = useRef(null);
@@ -43,8 +54,8 @@ export default function send() {
           alt=""
         />
         <div>
-          <p>John</p>
-          <span>****2233</span>
+          <p>{data && `${data.firstname} ${data.lastname}`} </p>
+          <span>{data && data.username}</span>
         </div>
 
         <i class="bi bi-x"></i>

@@ -15,7 +15,7 @@ export async function GET(req, { params }) {
           { firstname: 1, username: 1, lastname: 1 }
         );
 
-        return { user: us, amount: user.amount };
+        return { user: us, amountDetail: user };
       })
     );
 

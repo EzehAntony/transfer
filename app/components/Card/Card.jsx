@@ -6,15 +6,15 @@ import { useEffect, useState } from "react";
 import styles from "./card.module.css";
 
 export default function Card({ data }) {
-  useEffect(() => {
-    console.log(data.username);
-  }, []);
   const router = useRouter();
   const path = usePathname();
   const random = Math.floor(Math.random() * 20);
 
   return (
-    <div className={styles.card} onClick={() => router.push("/send")}>
+    <div
+      className={styles.card}
+      onClick={() => router.push(`/send/${data._id}`)}
+    >
       <img
         src={`https://xsgames.co/randomusers/assets/avatars/male/${random}.jpg`}
         alt=""

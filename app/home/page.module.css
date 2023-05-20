@@ -22,9 +22,9 @@
 
 .hero header {
   width: 100%;
-  z-index: 100;
+  z-index: 1;
   height: 70px;
-  background: linear-gradient(90deg, #325d80, #1d1e58);
+  background: transparent;
   top: 0;
   display: flex;
   justify-content: space-between;
@@ -111,6 +111,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 1rem;
+  cursor: pointer;
 }
 
 .hero .bottom .button div:nth-of-type(1) {

@@ -19,6 +19,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  text-transform: capitalize;
 }
 
 .send header i {
@@ -52,6 +53,8 @@
   padding-left: 1rem;
   font-weight: 600;
   font-size: 20px;
+  text-transform: capitalize;
+  font-size: 15px;
 }
 
 .send .info div span {
@@ -95,6 +98,8 @@
 .send .numbers h3 {
   color: white;
   height: 80px;
+  text-transform: capitalize;
+  font-size: 15px;
   width: 33%;
   display: flex;
   justify-content: center;

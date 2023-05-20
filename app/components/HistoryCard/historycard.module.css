@@ -14,6 +14,7 @@
 .historyCard .topRow {
   width: 100%;
   display: flex;
+  text-transform: capitalize;
 }
 
 .historyCard .topRow img {
@@ -49,6 +50,7 @@
 }
 
 .historyCard .amount span {
-  color: #1e1f59;
+  color: #404177;
   font-weight: 600;
+  font-size: 25px;
 }

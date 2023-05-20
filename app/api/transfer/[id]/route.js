@@ -7,8 +7,8 @@ export async function POST(req, { params }) {
   await dbConnect();
   const data = await req.json();
   try {
-    const sender = await users.findOne({ username: data.from });
-    const receiver = await users.findOne({ username: params.id });
+    const sender = await users.findOne({ _id: data.from });
+    const receiver = await users.findOne({ _id: params.id });
     if (!sender || !receiver) {
       return NextResponse.json("Sender or receiver is invalid", {
         status: 401,
