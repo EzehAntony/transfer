@@ -1,0 +1,21 @@
+.historyCard {
+  bottom: 10px;
+  height: 150px;
+  background: linear-gradient(40deg, #3b3b35, #3b3b35, #0e0e0d);
+  animation: loading 2s infinite alternate-reverse;
+  min-width: 130px;
+  width: 45%;
+  max-width: 200px;
+  border-radius: 1rem;
+  margin: 2%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@keyframes loading {
+  50% {
+    background: linear-gradient(70deg, #3b3b35, #0e0e0d);
+  }
+}

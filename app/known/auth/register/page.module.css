@@ -1,0 +1,49 @@
+.register {
+  background-color: black;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+.register form {
+  height: 200px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.register form p {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.register form input {
+  width: 90%;
+  height: 50px;
+  padding: 5px;
+  color: black;
+  outline: none;
+}
+
+.register form button {
+  padding: 10px 30px;
+  background-color: rebeccapurple;
+  color: white;
+  font-weight: 600;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.register img {
+  width: 40px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}

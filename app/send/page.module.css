@@ -1,0 +1,137 @@
+.send {
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  visibility: hidden;
+}
+
+.send header {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.send header i {
+  font-size: 30px;
+}
+
+.send .info {
+  height: 100px;
+  border-radius: 1.5rem;
+  width: calc(100% - 2rem);
+  margin: 0 1rem;
+  margin-top: 80px;
+  background-color: #1a1a19;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 1rem;
+}
+
+.send .info img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 1.5rem;
+}
+
+.send .info div {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.send .info div span {
+  color: #9c9c9c;
+  font-size: 15px;
+  margin-top: 1rem;
+}
+
+.send .info i {
+  font-size: 30px;
+}
+
+.send .screen {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.send .screen span {
+  font-size: 40px;
+  padding-right: 0.5rem;
+  color: #325d80;
+}
+
+.send .screen h3 {
+  font-size: 40px;
+}
+
+.send .numbers {
+  width: calc(100% - 2rem);
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.send .numbers h3 {
+  color: white;
+  height: 80px;
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.send .numbers i {
+  font-size: 25px;
+}
+
+.slide {
+  height: 80px;
+  width: calc(100% - 2rem);
+  background-color: #1a1a19;
+  border-radius: 2rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.slide .slider {
+  width: 60px;
+  height: 60px;
+  background-color: #325d80;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0.5rem;
+}
+
+.slide p {
+  width: 100%;
+  margin-left: 70px;
+  font-weight: 600;
+  justify-self: flex-start;
+}

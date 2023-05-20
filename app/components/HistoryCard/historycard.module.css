@@ -1,0 +1,54 @@
+.historyCard {
+  bottom: 10px;
+  height: 150px;
+  background-color: #0e0e0d;
+  width: 45%;
+  border-radius: 1rem;
+  margin: 2%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.historyCard .topRow {
+  width: 100%;
+  display: flex;
+}
+
+.historyCard .topRow img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  margin-right: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.historyCard .topRow:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.historyCard .topRow div p {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+.historyCard .topRow div span {
+  font-weight: 600;
+}
+
+.historyCard .amount {
+  display: flex;
+  justify-content: space-between;
+  font-size: 25px;
+}
+
+.historyCard .amount h3 {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.historyCard .amount span {
+  color: #1e1f59;
+  font-weight: 600;
+}

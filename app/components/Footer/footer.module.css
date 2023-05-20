@@ -1,0 +1,20 @@
+.footer {
+  position: fixed;
+  bottom: 10px;
+  border-radius: 50px;
+  height: 60px;
+  background-color: #0e0e0d;
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 400px;
+}
+
+.footer i {
+  color: #325d80;
+  font-size: 30px;
+  cursor: pointer;
+  -webkit-text-stroke: 1px;
+  user-select: none;
+}

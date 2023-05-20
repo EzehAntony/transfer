@@ -1,0 +1,44 @@
+.score {
+  background-color: black;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+.score p {
+  position: relative;
+  color: transparent;
+  background: linear-gradient(
+    45deg,
+    aqua,
+    aqua,
+    rebeccapurple,
+    #ff0040,
+    #ff0040
+  );
+  background-clip: text;
+  font-weight: 900;
+  font-size: 60px;
+}
+
+.score p::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  width: 10px;
+  height: 10px;
+  background-color: aqua;
+}
+
+.score p::after {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 25px;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+}
