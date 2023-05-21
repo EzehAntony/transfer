@@ -10,6 +10,7 @@ import HistoryCardLoading from "../components/HistoryCardLoading/HistoryCardLoad
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Snowfall from "react-snowfall";
+import { ClapSpinner, ImpulseSpinner, PushSpinner } from "react-spinners-kit";
 
 export default function Home() {
   const t1 = gsap.timeline({});
@@ -121,7 +122,10 @@ export default function Home() {
           <div className={styles.name} id="name">
             <p>Hello</p>
             <h3>{data && data.username}</h3>
-            <h3>{!data && "No data"}</h3>
+            <h3>{!data && !loading && "No data"}</h3>
+            <h3>
+              {loading && <ImpulseSpinner size={20} frontColor={"#fff"} />}
+            </h3>
           </div>
           <i class="bi bi-bell-fill" id="bell"></i>
         </header>
@@ -185,7 +189,7 @@ export default function Home() {
               </SwiperSlide>
             ))}
 
-          {!users && (
+          {loading && (
             <>
               <SwiperSlide className={styles.wrapperSlide}>
                 <HistoryCardLoading />
