@@ -21,6 +21,7 @@ export default function Home() {
   const [history, setHistory] = useState("");
   const [users, setUsers] = useState("");
   const [data, setData] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const alertMsg = (message) => {
     toast(message, {
@@ -78,58 +79,36 @@ export default function Home() {
 
   //fetch data
 
-  const getHistory = async () => {
-    await fetch("/api/history/nazville")
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        setHistory(res);
-      })
-      .catch((err) => console.log(err));
-  };
-  const getAllUsers = async () => {
-    await fetch("/api/users")
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => setUsers(res))
-      .catch((err) => console.log(err));
-  };
   const getData = async () => {
-    await fetch("/api/user/646556ac2823e900bed4b2dc", {
+    setLoading(true);
+    await fetch("/api/feed/6464182584c59aa3d1f4d697", {
       next: { revalidate: 10 },
     })
       .then((res) => {
         return res.json();
       })
       .then((res) => {
-        setData(res);
+        setLoading(false);
+        setData(res.user);
+        setUsers(res.allUsers);
+        setHistory(res.history);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setLoading(false);
+        console.log(err);
+      });
   };
+
   useEffect(() => {
-    getHistory();
-    getAllUsers();
     getData();
   }, []);
 
-  const [hide, setHide] = useState(true);
+  const [hide, setHide] = useState(false);
   const hideClick = () => {
     if (hide) {
       setHide(false);
     } else {
       setHide(true);
-    }
-    const [hidee, setHidee] = useState(true);
-  };
-
-  const [hidee, setHidee] = useState(true);
-  const hideeClick = () => {
-    if (hidee) {
-      setHidee(false);
-    } else {
-      setHidee(true);
     }
   };
 
@@ -166,14 +145,14 @@ export default function Home() {
           </p>
 
           <h1 id="amount">
-            {hidee ? `${data ? data.account : "no data"}` : "*****"}
+            {hide ? `${data ? data.account : "no data"}` : "*****"}
           </h1>
 
           <div className={styles.button}>
             <div
               onClick={() =>
                 alertMsg(
-                  "this feature is unavailable at the moment. You can only send out funds"
+                  "This feature is unavailable at the moment. You can only send out funds"
                 )
               }
               id="request"

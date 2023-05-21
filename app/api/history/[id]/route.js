@@ -6,7 +6,7 @@ import dbConnect from "@/util/mongodb";
 export async function GET(req, { params }) {
   await dbConnect();
   try {
-    const data = await users.findOne({ username: params.id }, { pin: 0 });
+    const data = await users.findOne({ _id: params.id }, { pin: 0 });
 
     const history = await Promise.all(
       data.history.map(async (user) => {
