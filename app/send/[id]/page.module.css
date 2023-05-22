@@ -81,7 +81,7 @@
 .send .screen span {
   font-size: 40px;
   padding-right: 0.5rem;
-  color: #325d80;
+  color: red;
 }
 
 .send .screen h3 {
@@ -122,21 +122,12 @@
   position: relative;
 }
 
-.slide .slider {
-  width: 60px;
-  height: 60px;
-  background-color: #325d80;
-  border-radius: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  left: 0.5rem;
+.slide p {
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-left: 1em;
 }
 
-.slide p {
-  width: 100%;
-  margin-left: 70px;
-  font-weight: 600;
-  justify-self: flex-start;
+.slide i {
+  color: red;
 }

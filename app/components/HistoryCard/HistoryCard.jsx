@@ -6,9 +6,6 @@ import { useEffect, useState } from "react";
 import styles from "./historycard.module.css";
 
 export default function HistoryCard({ data, src }) {
-  useEffect(() => {
-    console.log(data);
-  }, []);
   const router = useRouter();
   const path = usePathname();
   const random = Math.floor(Math.random() * 20);
@@ -28,7 +25,7 @@ export default function HistoryCard({ data, src }) {
 
       <div className={styles.amount}>
         {data.amountDetail.details == "credit" ? (
-          <span>+</span>
+          <span style={{ color: "green" }}>+</span>
         ) : (
           <span style={{ color: "red" }}>-</span>
         )}
