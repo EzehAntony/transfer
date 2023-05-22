@@ -19,7 +19,7 @@ export default function send({ params }) {
 
   useEffect(() => {
     axios({
-      url: `http://localhost:3000/api/user/${params.id}`,
+      url: `/api/user/${params.id}`,
       method: "GET",
     })
       .then((res) => setData(res.data))
@@ -58,7 +58,7 @@ export default function send({ params }) {
     setLoading(true);
     await axios({
       method: "POST",
-      url: `http://localhost:3000/api/transfer/${params.id}`,
+      url: `/api/transfer/${params.id}`,
       data: {
         from: "6464182584c59aa3d1f4d697",
         amount: stringAmount,

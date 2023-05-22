@@ -118,7 +118,6 @@ export default function Home() {
       <div id="hero" className={styles.hero}>
         <Snowfall snowflakeCount={100} color="#ffffff60" speed={[1.0, 1.1]} />
         <header>
-          <i class="bi bi-justify-left" id="menu"></i>
           <div className={styles.name} id="name">
             <p>Hello</p>
             <h3>{data && data.username}</h3>
