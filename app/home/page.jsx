@@ -215,9 +215,7 @@ export default function Home() {
 
         <div className={styles.group} id="group">
           {history &&
-            history
-              .reverse()
-              .map((hist) => <HistoryCard key={hist._id} data={hist} />)}
+            history.map((hist) => <HistoryCard key={hist._id} data={hist} />)}
           {!history && (
             <>
               <HistoryCardLoading /> <HistoryCardLoading />

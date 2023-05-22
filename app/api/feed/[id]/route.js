@@ -21,7 +21,7 @@ export async function GET(req, { params }) {
       })
     );
     const dataAll = await Promise.all([user, allUsers, history]).then(
-      ([f, s, t]) => ({ user: f, allUsers: s, history: t.slice(0, 10) })
+      ([f, s, t]) => ({ user: f, allUsers: s, history: t.slice(-10) })
     );
     return NextResponse.json(dataAll, { status: 200 });
   } catch (error) {
