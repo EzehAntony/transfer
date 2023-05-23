@@ -8,7 +8,7 @@ export async function GET(req, { params }) {
     //to fetch the user data
     const user = await users.findOne({ _id: params.id }, { pin: 0 });
     //to fetch all the users in the database
-    const allUsers = await users.find({}, { pin: 0 });
+    const allUsers = await users.find({}, { pin: 0, });
     //to get the history of the user
     const history = await Promise.all(
       user.history.map(async (user) => {

@@ -81,7 +81,7 @@
 .send .screen span {
   font-size: 40px;
   padding-right: 0.5rem;
-  color: red;
+  color: #dc0c3b;
 }
 
 .send .screen h3 {
@@ -129,5 +129,5 @@
 }
 
 .slide i {
-  color: red;
+  color: #dc0c3b;
 }

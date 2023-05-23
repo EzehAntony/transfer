@@ -19,9 +19,9 @@ export default function Home() {
   const t4 = gsap.timeline({});
   const ref = useRef(null);
   const g = gsap.utils.selector(ref);
-  const [history, setHistory] = useState("");
-  const [users, setUsers] = useState("");
-  const [data, setData] = useState("");
+  const [history, setHistory] = useState(null);
+  const [users, setUsers] = useState(null);
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const alertMsg = (message) => {
@@ -82,7 +82,7 @@ export default function Home() {
 
   const getData = async () => {
     setLoading(true);
-    await fetch("/api/feed/6464182584c59aa3d1f4d697", {
+    await fetch("/api/feed/646bdf76158078da1bcd7c83", {
       next: { revalidate: 10 },
     })
       .then((res) => {
@@ -148,7 +148,7 @@ export default function Home() {
           </p>
 
           <h1 id="amount">
-            {hide ? `${data ? data.account : "no data"}` : "*****"}
+            {hide ? `$ ${data ? data.account : "no data"}` : "*****"}
           </h1>
 
           <div className={styles.button}>
@@ -216,11 +216,14 @@ export default function Home() {
         <div className={styles.group} id="group">
           {history &&
             history.map((hist) => <HistoryCard key={hist._id} data={hist} />)}
-          {!history && (
+          {!history && loading && (
             <>
               <HistoryCardLoading /> <HistoryCardLoading />
               <HistoryCardLoading /> <HistoryCardLoading />
             </>
+          )}
+          {history && history.length == 0 && (
+            <h3>You have not made or recieved any transfer</h3>
           )}
         </div>
       </div>
