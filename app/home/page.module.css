@@ -15,8 +15,8 @@
   min-height: 400px;
   height: 40vh;
   border-radius: 0 0 1rem 1rem;
+  background: linear-gradient(90deg, #325d80, #1d1e58);
   padding: 1rem;
-  background: linear-gradient(90deg, #b51a81, #ff0000);
   position: relative;
 }
 

@@ -188,7 +188,7 @@ export default function Home() {
               </SwiperSlide>
             ))}
 
-          {loading && (
+          {!users && (
             <>
               <SwiperSlide className={styles.wrapperSlide}>
                 <HistoryCardLoading />
@@ -216,7 +216,7 @@ export default function Home() {
         <div className={styles.group} id="group">
           {history &&
             history.map((hist) => <HistoryCard key={hist._id} data={hist} />)}
-          {!history && loading && (
+          {!history &&  (
             <>
               <HistoryCardLoading /> <HistoryCardLoading />
               <HistoryCardLoading /> <HistoryCardLoading />
