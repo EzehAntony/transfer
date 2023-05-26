@@ -1,16 +1,17 @@
+"use client";
+
 import "./globals.css";
 import { useSession } from "next-auth/react";
 import { Inter, Poppins, Roboto } from "next/font/google";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Provider from "./Provider";
 export const metadata = {
   themeColor: "black",
   title: "Transfer",
   description: "Rapid payments",
 };
-
-import { SessionProvider } from "next-auth/react";
 
 const inter = Poppins({
   subsets: ["latin"],
@@ -21,7 +22,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SessionProvider>{children}</SessionProvider>
+        <Provider>{children}</Provider>
       </body>
     </html>
   );
