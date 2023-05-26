@@ -43,7 +43,7 @@ export default function Home() {
             opacity: 0,
             y: -50,
             onComplete: () => {
-              router.push("/home");
+              router.push("/auth/signin");
             },
           },
           "<+0.5"

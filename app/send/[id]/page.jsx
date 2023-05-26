@@ -9,8 +9,9 @@ import axios from "axios";
 import { ClapSpinner, RotateSpinner } from "react-spinners-kit";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { useSession } from "next-auth/react";
 export default function send({ params }) {
+  const { data: session } = useSession();
   const router = useRouter();
   const [screen, setScreen] = useState([]);
   const [data, setData] = useState("");
@@ -56,40 +57,43 @@ export default function send({ params }) {
 
   const transfer = async () => {
     setLoading(true);
-    await axios({
-      method: "POST",
-      url: `/api/transfer/${params.id}`,
-      data: {
-        from: "646bdf76158078da1bcd7c83",
-        amount: stringAmount,
-        pin: "4444",
-      },
-    })
-      .then((res) => {
-        toast(res.data, {
-          position: "top-right",
-          autoClose: 2000,
-          draggable: false,
-          theme: "dark",
-          onClose: () => router.push("/home"),
-        });
-        console.log(res.data);
-        setLoading(false);
+    if (session && data) {
+      await axios({
+        method: "POST",
+        url: `/api/transfer/${params.id}`,
+        data: {
+          from: session?.user._id,
+          amount: stringAmount,
+          pin: "4444",
+        },
       })
-      .catch((err) => {
-        setLoading(false);
-        if (err.response.data) {
-          toast(err.response.data, {
+        .then((res) => {
+          toast(res.data, {
             position: "top-right",
             autoClose: 2000,
             draggable: false,
             theme: "dark",
+            onClose: () => router.push(`/home/${session?.user._id}`),
           });
-          console.log(err);
-        } else {
-          console.log(err);
-        }
-      });
+          console.log(res.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
+          if (err.response.data) {
+            toast(err.response.data, {
+              position: "top-right",
+              autoClose: 2000,
+              draggable: false,
+              theme: "dark",
+            });
+            console.log(err);
+          } else {
+            console.log(err);
+          }
+        });
+    } else {
+    }
   };
 
   return (

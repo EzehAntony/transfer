@@ -1,18 +1,19 @@
 "use client";
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import styles from "./page.module.css";
-import Card from "../components/Card/Card";
+import Card from "../../components/Card/Card";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import HistoryCard from "../components/HistoryCard/HistoryCard";
+import HistoryCard from "../../components/HistoryCard/HistoryCard";
 import { gsap, Power1 } from "gsap";
-import HistoryCardLoading from "../components/HistoryCardLoading/HistoryCardLoading";
+import HistoryCardLoading from "../../components/HistoryCardLoading/HistoryCardLoading";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Snowfall from "react-snowfall";
 import { ClapSpinner, ImpulseSpinner, PushSpinner } from "react-spinners-kit";
-
-export default function Home() {
+import { signIn, useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+export default function Home({ params }) {
   const t1 = gsap.timeline({});
   const t2 = gsap.timeline({ paused: true });
   const t3 = gsap.timeline({});
@@ -24,6 +25,8 @@ export default function Home() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const { data: session } = useSession();
+
   const alertMsg = (message) => {
     toast(message, {
       position: "top-right",
@@ -33,6 +36,9 @@ export default function Home() {
     });
   };
 
+  useEffect(() => {
+    console.log(session);
+  }, [session]);
   // Gsap animations
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -82,9 +88,7 @@ export default function Home() {
 
   const getData = async () => {
     setLoading(true);
-    await fetch("/api/feed/646bdf76158078da1bcd7c83", {
-      next: { revalidate: 10 },
-    })
+    await fetch(`/api/feed/${session?.user._id}`)
       .then((res) => {
         return res.json();
       })
@@ -102,7 +106,7 @@ export default function Home() {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [session]);
 
   const [hide, setHide] = useState(false);
   const hideClick = () => {
@@ -120,11 +124,8 @@ export default function Home() {
         <header>
           <div className={styles.name} id="name">
             <p>Hello</p>
-            <h3>{data && data.username}</h3>
-            <h3>{!data && !loading && "No data"}</h3>
-            <h3>
-              {loading && <ImpulseSpinner size={20} frontColor={"#fff"} />}
-            </h3>
+            <h3>{session?.user.username}</h3>
+            <h3>{!session && "fetching.."}</h3>
           </div>
           <i class="bi bi-bell-fill" id="bell"></i>
         </header>
@@ -210,13 +211,15 @@ export default function Home() {
         </Swiper>
       </div>
 
-      <div className={styles.history}>
+      <div className={styles.history} onClick={() => signIn()}>
         <h1 id="history">history</h1>
 
         <div className={styles.group} id="group">
           {history &&
-            history.map((hist) => <HistoryCard key={hist._id} data={hist} />)}
-          {!history &&  (
+            history
+              .reverse()
+              .map((hist) => <HistoryCard key={hist._id} data={hist} />)}
+          {!history && (
             <>
               <HistoryCardLoading /> <HistoryCardLoading />
               <HistoryCardLoading /> <HistoryCardLoading />
