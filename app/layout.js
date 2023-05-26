@@ -1,5 +1,3 @@
-"use client";
-
 import "./globals.css";
 import { useSession } from "next-auth/react";
 import { Inter, Poppins, Roboto } from "next/font/google";
@@ -13,7 +11,6 @@ export const metadata = {
 };
 
 import { SessionProvider } from "next-auth/react";
-import { redirect } from "next/dist/server/api-utils";
 
 const inter = Poppins({
   subsets: ["latin"],
