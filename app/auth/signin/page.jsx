@@ -7,10 +7,12 @@ import { redirect } from "next/dist/server/api-utils";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ClapSpinner, ImpulseSpinner, PushSpinner } from "react-spinners-kit";
 
 export default function signin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -34,11 +36,13 @@ export default function signin() {
   }, [session]);
 
   const handleSubmit = () => {
+    setLoading(true);
     signIn("credentials", {
       username: username,
       password: password,
       redirect: false,
     }).then((res) => {
+      setLoading(false);
       console.log(res);
       if (res.error) {
         alertMsg(res.error, "error");
@@ -54,15 +58,17 @@ export default function signin() {
       <h1>Transfer</h1>
       <form>
         <>
-          <h1>sign in</h1>
+          <h1>Login</h1>
         </>
         <label>
           <h3>username</h3>
           <input
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value.trim().toLowerCase())}
             type="text"
             name="login"
-            id=""
+            id="form"
+            autoComplete="off"
+            required
           />
         </label>
 
@@ -70,14 +76,21 @@ export default function signin() {
           <h3>password</h3>
 
           <input
+            required
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value.trim())}
             name="login"
-            id=""
+            id="form"
           />
         </label>
-        <button type="button" onClick={() => handleSubmit()}>
-          Login
+        <button
+          type="button"
+          id="form"
+          name="text"
+          onClick={() => handleSubmit()}
+        >
+          {!loading && "Login"}
+          {loading && <ClapSpinner size="20" frontColor="#fff" />}
         </button>
       </form>
       <ToastContainer />
