@@ -1,5 +1,3 @@
-"use client";
-
 import "./globals.css";
 import { useSession } from "next-auth/react";
 import { Inter, Poppins, Roboto } from "next/font/google";
